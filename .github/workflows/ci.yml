@@ -1,0 +1,50 @@
+name: BidGadget CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+
+      - name: Install Composer Dependencies
+        run: composer install
+
+      - name: Compile Java Classes
+        run: |
+          javac backend/BidCalculator.java
+          javac backend/test/BidCalculatorTest.java
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit tests
+
+      - name: Run JUnit
+        run: |
+          java -jar backend/lib/junit-platform-console-standalone-1.10.2.jar \
+          --class-path backend:backend/test \
+          --scan-class-path
