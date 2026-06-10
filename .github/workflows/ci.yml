@@ -1,33 +1,33 @@
 name: BidGadget CI
 
 on:
-push:
-branches:
-- main
-- master
+  push:
+    branches:
+      - main
+      - master
 
-pull_request:
-branches:
-- main
-- master
+  pull_request:
+    branches:
+      - main
+      - master
 
 jobs:
-test:
-runs-on: ubuntu-latest
+  test:
 
-```
-steps:
-  - name: Checkout Repository
-    uses: actions/checkout@v4
+    runs-on: ubuntu-latest
 
-  - name: Setup PHP
-    uses: shivammathur/setup-php@v2
-    with:
-      php-version: 8.2
+    steps:
 
-  - name: Install Dependencies
-    run: composer install --no-interaction --prefer-dist
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-  - name: Run PHPUnit Tests
-    run: php vendor/bin/phpunit tests
-```
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+
+      - name: Install Composer Dependencies
+        run: composer install
+
+      - name: Run PHPUnit
+        run: php vendor/bin/phpunit tests
