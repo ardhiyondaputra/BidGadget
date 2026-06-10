@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "backend\\lib"
+    ],
+    "java.project.referencedLibraries": [
+        "backend\\lib\\junit-platform-console-standalone-1.10.2.jar"
+    ]
+}

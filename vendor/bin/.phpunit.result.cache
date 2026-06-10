@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"BidClientTest::testPayloadCreation":0.007,"BidClientTest::testAuctionIdIsInteger":0.002,"BidClientTest::testBidAmountIsFloat":0.002,"BidIntegrationTest::testJavaApiReceivesPayload":0.014,"BidIntegrationTest::testValidBidReturnsAcceptedStatus":0.02,"BidIntegrationTest::testInvalidBidReturnsRejectedStatus":0.002}}
