@@ -21,13 +21,30 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
 
       - name: Install Composer Dependencies
-        run: composer install
+        run: composer install --no-interaction
 
-      - name: Run PHPUnit Unit Tests
-        run: php vendor/bin/phpunit tests/BidClientTest.php
+      - name: Compile Java Backend
+        run: |
+          cd backend
+          javac BidEngine.java
+
+      - name: Start Java Backend
+        run: |
+          cd backend
+          nohup java BidEngine > server.log 2>&1 &
+          sleep 5
+
+      - name: Run PHPUnit Tests
+        run: php vendor/bin/phpunit tests
