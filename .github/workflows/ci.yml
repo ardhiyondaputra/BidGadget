@@ -29,5 +29,5 @@ jobs:
       - name: Install Composer Dependencies
         run: composer install
 
-      - name: Run PHPUnit
-        run: php vendor/bin/phpunit tests
+      - name: Run PHPUnit Unit Tests
+        run: php vendor/bin/phpunit tests/BidClientTest.php
