@@ -4,6 +4,23 @@ use PHPUnit\Framework\TestCase;
 
 class BidIntegrationTest extends TestCase
 {
+protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Reset data sebelum test
+        // Pada project BidGadget saat ini backend belum menulis ke JSON,
+        // sehingga hanya simulasi reset data.
+    }
+
+    protected function tearDown(): void
+    {
+        // Bersihkan data setelah test
+        // Simulasi cleanup data.
+
+        parent::tearDown();
+    }
+
     public function testJavaApiReceivesPayload()
     {
         $payload = json_encode([
